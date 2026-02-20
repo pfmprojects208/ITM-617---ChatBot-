@@ -27,7 +27,7 @@ def iniciar_rag(ruta_pdf, pregunta_usuario):
     print("3 y 4. Creando base de datos matemática con ChromaDB y Nomic...")
     embeddings = OllamaEmbeddings(model="nomic-embed-text")
     # Esto creará una carpeta oculta '.chroma' en tu proyecto
-# Al quitar el persist_directory, ChromaDB se ejecuta en la RAM. 
+    # Al quitar el persist_directory, ChromaDB se ejecuta en la RAM. 
     # Cero bloqueos y mucho más rápido en Streamlit.
     vectorstore = Chroma.from_documents(documents=trozos, embedding=embeddings)    
     # Configuramos el buscador para que traiga los 4 trozos más relevantes
