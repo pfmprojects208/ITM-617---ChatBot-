@@ -1,0 +1,22 @@
+# Entorno virtual (La carpeta de librerías pesa mucho)
+chatbot_venv/
+.venv/
+env/
+
+# Python (Archivos temporales de ejecución)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Base de datos vectorial (ChromaDB crea archivos locales grandes)
+.chroma/
+chroma_db/
+
+# Archivos de configuración y secretos (¡Importante!)
+.env
+
+# Archivos del sistema Mac
+.DS_Store
+
+# Documentos PDF de prueba (Mejor no subirlos para no saturar el repo)
+*.pdf
