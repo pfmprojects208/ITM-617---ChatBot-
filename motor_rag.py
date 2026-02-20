@@ -8,6 +8,10 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains.retrieval import create_retrieval_chain
 
 def iniciar_rag(ruta_pdf, pregunta_usuario):
+    import shutil
+    if os.path.exists("./.chroma"):
+        shutil.rmtree("./.chroma") # Borra la base de datos vieja
+
     print("1. Leyendo el PDF completo...")
     loader = PyPDFLoader(ruta_pdf)
     documentos = loader.load()
@@ -23,8 +27,9 @@ def iniciar_rag(ruta_pdf, pregunta_usuario):
     print("3 y 4. Creando base de datos matemática con ChromaDB y Nomic...")
     embeddings = OllamaEmbeddings(model="nomic-embed-text")
     # Esto creará una carpeta oculta '.chroma' en tu proyecto
-    vectorstore = Chroma.from_documents(documents=trozos, embedding=embeddings, persist_directory="./.chroma")
-    
+# Al quitar el persist_directory, ChromaDB se ejecuta en la RAM. 
+    # Cero bloqueos y mucho más rápido en Streamlit.
+    vectorstore = Chroma.from_documents(documents=trozos, embedding=embeddings)    
     # Configuramos el buscador para que traiga los 4 trozos más relevantes
     retriever = vectorstore.as_retriever(search_kwargs={"k": 4})
 
@@ -57,6 +62,7 @@ def iniciar_rag(ruta_pdf, pregunta_usuario):
     print("========================================")
     print(respuesta["answer"])
     print("========================================")
+    return respuesta["answer"]
 
 if __name__ == "__main__":
     # ⚠️ IMPORTANTE: Pon un PDF real tuyo en la carpeta y cambia este nombre
