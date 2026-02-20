@@ -4,7 +4,7 @@ from langchain_ollama import OllamaLLM
 model = OllamaLLM(model="llama3.1")
 
 print("--- Iniciando consulta a Ollama ---")
-pregunta = "Hola, estoy configurando un sistema RAG local. ¿Puedes saludar a mi equipo de desarrollo?"
+pregunta = "Cuentame un chiste"
 respuesta = model.invoke(pregunta)
 
 print(f"\nRespuesta de la IA:\n{respuesta}")
