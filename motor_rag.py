@@ -62,6 +62,6 @@ if __name__ == "__main__":
     # ⚠️ IMPORTANTE: Pon un PDF real tuyo en la carpeta y cambia este nombre
     archivo = "Unknown.pdf" 
     
-    mi_pregunta = "¿Cuál es el tema principal de este documento? Hazme un resumen breve."
+    mi_pregunta = "Como se llama la estrategia que utilizo GAP?"
     
     iniciar_rag(archivo, mi_pregunta)
